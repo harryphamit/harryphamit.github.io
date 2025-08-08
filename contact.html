@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harry Pham | Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        p: ['Roboto', 'sans-serif']
+                    },
+                    colors: {
+                        'primary-bg': '#16325B',
+                        'primary-light': '#1E467C',
+                        'accent': '#A2D2FF',
+                        'muted': '#C5D6E5',
+                        'text-main': '#E6EEF5',
+                        'border-soft': '#3B5A89'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<style>
+    #gradient-cursor {
+        background: radial-gradient(circle at center, #60a5fa, #9333ea, #ec4899);
+    }
+</style>
+<!-- Gradient Cursor -->
+<div id="gradient-cursor" class="fixed top-0 left-0 w-16 h-16 rounded-full pointer-events-none z-50 opacity-80 blur-lg">
+</div>
+
+<body class="bg-black text-text-main font-body transition duration-300">
+    <!-- Navbar -->
+    <nav id="navbar"
+        class="fixed bottom-[50px] left-1/2 -translate-x-1/2 w-[90%] sm:w-[80%] bg-black border border-border-soft px-4 sm:px-6 py-3 flex justify-between items-center shadow-lg rounded-full z-50 transition-all duration-500">
+        <div id="navbar-full" class="flex items-center gap-4 cursor-pointer" data-expanded="false">
+            <img src="./assets/profile.JPG" alt="Harry Pham Avatar"
+                class="w-10 h-10 rounded-full border border-muted" />
+            <span class="font-heading text-base sm:text-lg text-text-main">Harry Pham</span>
+        </div>
+        <div id="navbar-links"
+            class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6 mt-4 sm:mt-0">
+            <a href="./index.html"
+                class="px-4 py-2 text-muted hover:bg-accent hover:text-black transition duration-300 ease-in-out border-border-soft rounded-lg">
+                Home</a>
+            <a href="./resume.html"
+                class="px-4 py-2 text-muted hover:bg-accent hover:text-black transition duration-300 ease-in-out border-border-soft rounded-lg">
+                Resume</a>
+            <a href="./contact.html"
+                class="px-4 py-2 text-muted hover:bg-accent hover:text-black transition duration-300 ease-in-out border-border-soft rounded-lg">
+                Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="w-full min-h-screen flex flex-col items-center justify-center text-center px-6">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-heading text-accent mb-6">Let's Connect</h2>
+        <h1
+            class="text-3xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2">
+            Harry Pham
+        </h1>
+        <p class="text-muted mb-2"> Toronto, ON, Canada</p>
+        <p class="text-muted mb-6"><a href="mailto:phamd18@mcmaster.ca">phamd18@mcmaster.ca</a></p>
+        <div class="w-full max-w-2xl h-64 rounded-lg overflow-hidden border border-border-soft">
+            <gmp-map center="43.653225,-79.383186" zoom="10" map-id="DEMO_MAP_ID" style="height: 400px">
+                <gmp-advanced-marker position="43.653225,-79.383186" title="Toronto, CA"></gmp-advanced-marker>
+            </gmp-map>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="min-h-[50px] px-4 flex items-center justify-center text-muted text-xs sm:text-sm text-center">
+        <p>© 2025 Harry Pham. All Rights Reserved.</p>
+    </footer>
+    <script>
+        const navbar = document.getElementById('navbar');
+        const fullNav = document.getElementById('navbar-full');
+        const links = document.getElementById('navbar-links');
+        const isMobile = () => window.innerWidth < 640;
+
+        function collapseNavbar() {
+            navbar.classList.add('w-16', 'px-2', 'justify-center');
+            navbar.classList.remove('w-[90%]', 'sm:w-[80%]', 'px-4', 'sm:px-6', 'justify-between');
+            fullNav.setAttribute('data-expanded', 'false');
+            fullNav.innerHTML = `<img src="./assets/profile.JPG" alt="Harry Pham Avatar" class="w-10 h-10 rounded-full border border-muted" />`;
+            links.classList.add('hidden');
+            links.classList.remove('flex');
+        }
+
+        function expandNavbar() {
+            navbar.classList.remove('w-16', 'px-2', 'justify-center');
+            navbar.classList.add('w-[90%]', 'sm:w-[80%]', 'px-4', 'sm:px-6', 'justify-between');
+            fullNav.setAttribute('data-expanded', 'true');
+            fullNav.innerHTML = `
+      <img src="./assets/profile.JPG" alt="Harry Pham Avatar" class="w-10 h-10 rounded-full border border-muted" />
+      <span class="font-heading text-base sm:text-lg text-text-main">Harry Pham</span>
+    `;
+            links.classList.remove('hidden');
+            links.classList.add('flex');
+        }
+
+        // Toggle when clicking avatar
+        fullNav.addEventListener('click', () => {
+            if (!isMobile()) return;
+
+            const expanded = fullNav.getAttribute('data-expanded') === 'true';
+            if (expanded) {
+                collapseNavbar();
+            } else {
+                expandNavbar();
+            }
+        });
+
+        // Auto-collapse on scroll past hero section
+        const hero = document.getElementById('hero');
+        function handleScrollNavbar() {
+            if (!isMobile()) return;
+
+            const heroBottom = hero.getBoundingClientRect().bottom;
+            if (heroBottom <= window.innerHeight) {
+                collapseNavbar();
+            } else {
+                expandNavbar();
+            }
+        }
+
+        window.addEventListener('scroll', handleScrollNavbar);
+        window.addEventListener('resize', () => {
+            if (!isMobile()) {
+                expandNavbar(); // restore for desktop
+            } else {
+                collapseNavbar(); // re-collapse if resized to mobile
+            }
+        });
+
+        // Initial setup
+        document.addEventListener('DOMContentLoaded', () => {
+            if (isMobile()) collapseNavbar();
+            else expandNavbar();
+        });
+        const cursor = document.getElementById("gradient-cursor");
+        document.addEventListener("mousemove", (e) => {
+            cursor.style.transform = `translate(${e.clientX - 32}px, ${e.clientY - 32}px)`;
+        });
+    </script>
+
+</body>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxhdLaAre1ohZadHP1giEwjHGdQgSCmGc&libraries=maps,marker"
+    defer></script>
+
+</html>
