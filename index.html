@@ -1,225 +1,1791 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Harry Pham | Home</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
-  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            heading: ['Poppins', 'sans-serif'],
-            body: ['Inter', 'sans-serif'],
-            p: ['Roboto', 'sans-serif']
-          },
-          colors: {
-            'primary-bg': '#16325B',
-            'primary-light': '#1E467C',
-            'accent': '#A2D2FF',
-            'muted': '#C5D6E5',
-            'text-main': '#E6EEF5',
-            'border-soft': '#3B5A89'
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<style>
-  #gradient-cursor {
-    background: radial-gradient(circle at center, #60a5fa, #9333ea, #ec4899);
-  }
-</style>
-<!-- Gradient Cursor -->
-<div id="gradient-cursor" class="fixed top-0 left-0 w-16 h-16 rounded-full pointer-events-none z-50 opacity-80 blur-lg">
-</div>
-<!-- Loading Overlay -->
-<div id="loading-overlay"
-  class="fixed inset-0 flex items-center justify-center bg-black z-50 transition-opacity duration-500">
-  <div class="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-</div>
+  <title>Harry Pham — IT Specialist | Windows Server, Azure & Hybrid Identity</title>
+  <meta name="description"
+    content="Harry Pham — IT Specialist in Toronto. Windows Server, Azure, hybrid Active Directory, Exchange Online, SQL Server and PowerShell automation across MSP and enterprise environments. AZ-104 and MD-102 certified." />
+  <meta name="author" content="Harry Pham" />
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
 
-<body class="bg-black text-text-main font-body transition duration-300">
-  <!-- Navbar -->
-  <nav id="navbar"
-    class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] sm:w-[80%] bg-black border border-border-soft px-4 sm:px-6 py-2 sm:py-3 flex justify-between items-center shadow-lg rounded-full z-50 transition-all duration-500">
-    <div id="navbar-full" class="flex items-center gap-2 sm:gap-4 cursor-pointer">
-      <img src="./assets/profile.JPG" alt="Harry Pham Avatar" class="w-10 h-10 rounded-full border border-muted" />
-      <span class="font-heading text-base sm:text-lg text-text-main">Harry Pham</span>
-    </div>
-    <div id="navbar-links" class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6 mt-4 sm:mt-0">
-      <a href="./index.html"
-        class="px-4 py-2 text-muted hover:bg-accent hover:text-black transition duration-300 ease-in-out border-border-soft rounded-lg hover:scale-110">Home</a>
-      <a href="./resume.html"
-        class="px-4 py-2 text-muted hover:bg-accent hover:text-black transition duration-300 ease-in-out border-border-soft rounded-lg hover:scale-110">Resume</a>
-      <a href="./contact.html"
-        class="px-4 py-2 text-muted hover:bg-accent hover:text-black transition duration-300 ease-in-out border-border-soft rounded-lg hover:scale-110">Contact</a>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Harry Pham — IT Specialist" />
+  <meta property="og:description"
+    content="Windows Server, Azure, hybrid Active Directory, Exchange Online and PowerShell automation. AZ-104 · MD-102 · ITIL 4 · Network+" />
+  <meta property="og:url" content="https://harryphamit.github.io/" />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       TOKENS
+       ============================================================ */
+    :root {
+      --bg: #06080b;
+      --bg-grid: rgba(148, 179, 214, 0.045);
+      --surface: #0c1117;
+      --surface-2: #111926;
+      --surface-3: #16202e;
+      --line: #1d2937;
+      --line-soft: #16202c;
+
+      --text: #e2e9f1;
+      --text-dim: #9aa9bb;
+      --text-faint: #67768a;
+
+      --cyan: #38d6e8;
+      --cyan-dim: #1b8f9d;
+      --green: #4ade80;
+      --amber: #f5b544;
+
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      --max: 1120px;
+      --r: 10px;
+    }
+
+    /* ============================================================
+       BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 84px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(var(--bg-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+      background-size: 56px 56px;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    ::selection { background: var(--cyan); color: #04070a; }
+
+    :focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .skip {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--cyan);
+      color: #04070a;
+      padding: 10px 18px;
+      font-weight: 600;
+      z-index: 200;
+    }
+    .skip:focus { left: 12px; top: 12px; }
+
+    /* ============================================================
+       NAV
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(6, 8, 11, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s ease, background .3s ease;
+    }
+    .nav.scrolled { border-bottom-color: var(--line); }
+    .nav.menu-open { background: var(--bg); }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      flex-shrink: 0;
+    }
+    .brand img {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--line);
+    }
+    .brand .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      flex-shrink: 0;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      color: var(--text-faint);
+      padding: 7px 11px;
+      border-radius: 6px;
+      transition: color .18s ease, background .18s ease;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-links a .idx { color: var(--cyan-dim); margin-right: 5px; }
+    .nav-links a.active .idx { color: var(--cyan); }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      color: var(--cyan);
+      border: 1px solid var(--cyan-dim);
+      padding: 7px 14px;
+      border-radius: 6px;
+      transition: background .18s ease, color .18s ease;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--cyan); color: #04070a; }
+
+    .burger {
+      display: none;
+      background: none;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px 10px;
+      cursor: pointer;
+      color: var(--text-dim);
+    }
+    .burger svg { width: 18px; height: 18px; display: block; }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 72px;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(720px 420px at 22% 32%, rgba(56, 214, 232, 0.07), transparent 70%);
+      pointer-events: none;
+    }
+    .hero .wrap { position: relative; z-index: 1; }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 22px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 26px; height: 1px;
+      background: var(--cyan-dim);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 7.5vw, 4.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      font-weight: 700;
+      margin: 0 0 14px;
+    }
+
+    .hero h2 {
+      font-size: clamp(1.15rem, 3.2vw, 1.7rem);
+      font-weight: 500;
+      color: var(--text-dim);
+      letter-spacing: -0.02em;
+      margin: 0 0 26px;
+      line-height: 1.35;
+    }
+    .hero h2 b { color: var(--text); font-weight: 600; }
+
+    .hero p.lede {
+      max-width: 62ch;
+      color: var(--text-dim);
+      font-size: 16.5px;
+      margin: 0 0 34px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 38px;
+    }
+    .chip {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--text-dim);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 5px 10px;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+
+    .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 14.5px;
+      font-weight: 500;
+      padding: 11px 20px;
+      border-radius: 7px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      transition: border-color .2s ease, background .2s ease, transform .2s ease, color .2s ease;
+    }
+    .btn:hover { border-color: var(--cyan-dim); background: var(--surface-2); transform: translateY(-1px); }
+    .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .btn.primary {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      color: #04070a;
+      font-weight: 600;
+    }
+    .btn.primary:hover { background: #5ee2f2; border-color: #5ee2f2; color: #04070a; }
+
+    /* stat strip */
+    .stats {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      background: rgba(12, 17, 23, 0.6);
+      overflow: hidden;
+    }
+    .stat { padding: 20px 22px; border-right: 1px solid var(--line-soft); }
+    .stat:last-child { border-right: 0; }
+    .stat .n {
+      font-family: var(--mono);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .stat .l {
+      font-size: 12.5px;
+      color: var(--text-faint);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       SECTIONS
+       ============================================================ */
+    section { padding: 96px 0; }
+
+    .sec-head { margin-bottom: 44px; }
+
+    .sec-num {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .sec-num::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--line), transparent);
+    }
+
+    .sec-head h2 {
+      font-size: clamp(1.7rem, 4.2vw, 2.35rem);
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.15;
+    }
+    .sec-head p {
+      color: var(--text-dim);
+      max-width: 68ch;
+      margin: 12px 0 0;
+      font-size: 15.5px;
+    }
+
+    /* ============================================================
+       ABOUT
+       ============================================================ */
+    .about {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .about p {
+      color: var(--text-dim);
+      margin: 0 0 18px;
+      font-size: 16px;
+    }
+    .about p:last-child { margin-bottom: 0; }
+    .about strong { color: var(--text); font-weight: 600; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 22px;
+    }
+
+    .card-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 16px;
+    }
+
+    .kv { display: flex; flex-direction: column; gap: 13px; }
+    .kv-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      font-size: 14px;
+      padding-bottom: 13px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .kv-row:last-child { border-bottom: 0; padding-bottom: 0; }
+    .kv-row .k { color: var(--text-faint); font-family: var(--mono); font-size: 12px; flex-shrink: 0; }
+    .kv-row .v { color: var(--text); text-align: right; font-weight: 500; }
+    .kv-row .v .sub { display: block; color: var(--text-faint); font-size: 12px; font-weight: 400; }
+
+    /* ============================================================
+       STACK
+       ============================================================ */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 14px;
+    }
+
+    .stack-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 20px;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .stack-card:hover { border-color: var(--cyan-dim); background: var(--surface-2); }
+
+    .stack-card h3 {
+      font-size: 14px;
+      margin: 0 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .stack-card h3 svg { width: 16px; height: 16px; color: var(--cyan); flex-shrink: 0; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--text-dim);
+      background: var(--surface-2);
+      border: 1px solid var(--line-soft);
+      padding: 4px 9px;
+      border-radius: 4px;
+      line-height: 1.5;
+    }
+    .stack-card:hover .tag { border-color: var(--line); }
+
+    /* ============================================================
+       EXPERIENCE
+       ============================================================ */
+    .timeline { position: relative; padding-left: 0; }
+
+    .job {
+      display: grid;
+      grid-template-columns: 178px 1fr;
+      gap: 26px;
+      padding: 30px 0;
+      border-top: 1px solid var(--line-soft);
+      position: relative;
+    }
+    .job:first-child { border-top: 0; padding-top: 0; }
+
+    .job-when {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      color: var(--text-faint);
+      padding-top: 4px;
+      line-height: 1.7;
+    }
+    .job-when .live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--green);
+    }
+    .job-when .live::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 7px var(--green);
+    }
+    .job-when .place { display: block; color: #4d5a6b; margin-top: 2px; }
+
+    .job h3 {
+      font-size: 18px;
+      margin: 0 0 4px;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+    .job .org {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--cyan);
+      margin: 0 0 8px;
+    }
+    .job .note {
+      font-size: 13.5px;
+      color: var(--text-faint);
+      font-style: italic;
+      margin: 0 0 14px;
+    }
+
+    .job ul {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .job li {
+      position: relative;
+      padding-left: 20px;
+      color: var(--text-dim);
+      font-size: 14.8px;
+      line-height: 1.6;
+    }
+    .job li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--cyan-dim);
+      font-size: 12px;
+    }
+    .job li b { color: var(--text); font-weight: 600; }
+
+    .job-tags { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+
+    /* ============================================================
+       HOME LAB
+       ============================================================ */
+    .lab {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: linear-gradient(180deg, var(--surface) 0%, rgba(9, 13, 18, 0.9) 100%);
+      overflow: hidden;
+    }
+
+    .lab-bar {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface-2);
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-faint);
+    }
+    .lab-bar .dots { display: flex; gap: 6px; margin-right: 6px; }
+    .lab-bar .dots i {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--line);
+      display: block;
+    }
+    .lab-bar .dots i:first-child { background: #2b3846; }
+
+    .lab-body { padding: 30px; }
+
+    .lab-figure {
+      background: #04060a;
+      border: 1px solid var(--line-soft);
+      border-radius: 10px;
+      padding: 18px;
+      overflow-x: auto;
+    }
+    .lab-figure svg { display: block; min-width: 720px; width: 100%; height: auto; }
+
+    figcaption {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--text-faint);
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .lab-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 26px;
+    }
+    .lab-col {
+      background: var(--surface-2);
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .lab-col h4 {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--cyan);
+      margin: 0 0 10px;
+      letter-spacing: 0.03em;
+    }
+    .lab-col p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       PROJECTS
+       ============================================================ */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .proj {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .proj:hover { border-color: var(--cyan-dim); transform: translateY(-2px); }
+
+    .proj .shot {
+      aspect-ratio: 16 / 9;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--line-soft);
+      overflow: hidden;
+    }
+    .proj .shot img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: saturate(0.62) brightness(0.7) contrast(1.04);
+      transition: filter .25s ease, transform .35s ease;
+    }
+    .proj:hover .shot img { filter: saturate(1) brightness(1); transform: scale(1.03); }
+
+    .proj .body { padding: 16px 17px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .proj h3 { font-size: 15.5px; margin: 0; letter-spacing: -0.015em; font-weight: 600; }
+    .proj p { margin: 0; font-size: 13.5px; color: var(--text-faint); line-height: 1.55; flex: 1; }
+
+    /* ============================================================
+       CREDENTIALS
+       ============================================================ */
+    .cred-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .cert-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .cert {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 13px 16px;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .cert:hover { border-color: var(--cyan-dim); background: var(--surface-2); }
+
+    .cert img {
+      width: 36px; height: 36px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .cert .badge-fallback {
+      width: 36px; height: 36px;
+      border-radius: 6px;
+      background: var(--surface-3);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+    .cert .txt { flex: 1; min-width: 0; }
+    .cert .txt strong { display: block; font-size: 14.5px; font-weight: 600; letter-spacing: -0.01em; }
+    .cert .txt span { font-size: 12.5px; color: var(--text-faint); }
+    .cert .when {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--text-faint);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .edu-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .edu {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 2px solid var(--cyan-dim);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    .edu .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 3px;
+    }
+    .edu h4 { margin: 0; font-size: 15px; font-weight: 600; letter-spacing: -0.015em; }
+    .edu .yr { font-family: var(--mono); font-size: 11.5px; color: var(--text-faint); white-space: nowrap; }
+    .edu .yr.now { color: var(--green); }
+    .edu p { margin: 0; font-size: 13.5px; color: var(--text-dim); }
+    .edu p .school { color: var(--text-faint); }
+
+    /* ============================================================
+       CONTACT
+       ============================================================ */
+    .contact { text-align: center; padding-bottom: 40px; }
+    .contact .sec-num { justify-content: center; }
+    .contact .sec-num::after { display: none; }
+    .contact .sec-num::before {
+      content: '';
+      flex: 0 0 26px;
+      height: 1px;
+      background: var(--cyan-dim);
+    }
+    .contact h2 {
+      font-size: clamp(1.9rem, 5vw, 2.8rem);
+      letter-spacing: -0.035em;
+      margin: 0 0 16px;
+      font-weight: 700;
+    }
+    .contact p {
+      color: var(--text-dim);
+      max-width: 54ch;
+      margin: 0 auto 34px;
+      font-size: 16px;
+    }
+    .contact .btns { justify-content: center; }
+
+    footer {
+      border-top: 1px solid var(--line-soft);
+      padding: 26px 0 34px;
+    }
+    .foot-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-faint);
+      flex-wrap: wrap;
+    }
+    .foot-inner a:hover { color: var(--cyan); }
+    .foot-links { display: flex; gap: 18px; }
+
+    /* ============================================================
+       REVEAL
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 980px) {
+      .about { grid-template-columns: 1fr; gap: 32px; }
+      .cred-grid { grid-template-columns: 1fr; gap: 34px; }
+      .lab-cols { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        position: absolute;
+        top: 66px;
+        left: 0; right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+        padding: 8px 16px 14px;
+        display: none;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 11px 8px; font-size: 13.5px; }
+      .burger { display: block; }
+      .nav-cta { display: none; }
+      .nav-links .nav-cta { display: block; text-align: center; margin-top: 8px; }
+    }
+
+    @media (max-width: 760px) {
+      section { padding: 72px 0; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat { border-bottom: 1px solid var(--line-soft); }
+      .stat:nth-child(2n) { border-right: 0; }
+      .stat:nth-child(n+3) { border-bottom: 0; }
+      .job { grid-template-columns: 1fr; gap: 12px; }
+      .job-when { padding-top: 0; }
+      .job-when .place { display: inline; margin-left: 8px; }
+      .lab-body { padding: 18px; }
+      .lab-figure { padding: 12px; }
+      .foot-inner { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 460px) {
+      .wrap, .nav-inner, .foot-inner { padding-left: 18px; padding-right: 18px; }
+      .btn { flex: 1 1 100%; justify-content: center; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: 0; border-bottom: 1px solid var(--line-soft); }
+      .stat:last-child { border-bottom: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ========================= NAV ========================= -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#top" class="brand">
+        <img src="./assets/profile.JPG" alt="" />
+        <span>harry_pham</span>
+        <span class="dot" title="Open to opportunities"></span>
+      </a>
+
+      <button class="burger" id="burger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navlinks">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M3 6h18M3 12h18M3 18h18" />
+        </svg>
+      </button>
+
+      <div class="nav-links" id="navlinks">
+        <a href="#about"><span class="idx">01</span>about</a>
+        <a href="#stack"><span class="idx">02</span>stack</a>
+        <a href="#experience"><span class="idx">03</span>experience</a>
+        <a href="#lab"><span class="idx">04</span>lab</a>
+        <a href="#projects"><span class="idx">05</span>projects</a>
+        <a href="#credentials"><span class="idx">06</span>credentials</a>
+        <a class="nav-cta" href="./assets/Harry_Pham_Resume.pdf" target="_blank" rel="noopener">résumé ↗</a>
+      </div>
     </div>
   </nav>
-  <!-- Hero Section -->
-  <section id="hero"
-    class="w-full min-h-[100vh] flex flex-col items-center justify-center text-center border-t border-border-soft">
-    <h1
-      class="text-7xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2">
-      Harry Pham
-    </h1>
-    <h2 class="text-xl sm:text-2xl font-semibold text-accent mb-4">IT Support Specialist | M365 &amp; Azure Admin</h2>
-    <div
-      class="max-w-md sm:max-w-2xl text-muted text-base sm:text-lg mb-6 text-center sm:text-left flex flex-col items-center justify-center">
-      <p>MSP · Enterprise · Field IT | AZ-104 Certified</p>
-      <p>PowerShell · M365 · Entra ID · Intune · ServiceNow</p>
-    </div>
-    <div class="flex gap-4 justify-center">
-      <a href="./assets/Harry Pham_Resume.pdf"
-        class="bg-accent text-primary-bg font-semibold px-6 py-2 rounded hover:bg-primary-light hover:text-white transition hover:scale-110">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          class="h-5 w-5 inline-block mr-2">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-        </svg>View Resume
-      </a>
-      <a href="mailto:harry.pham11@outlook.com"
-        class="flex items-center gap-2 bg-transparent border border-accent text-accent font-semibold px-6 py-2 rounded hover:bg-primary-light hover:text-white transition hover:scale-110">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-          stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-        Contact Me
-      </a>
-    </div>
-  </section>
 
-  <!-- About Section -->
-  <section
-    class="pt-24 sm:pt-32 px-4 sm:px-6 pb-16 sm:pb-20 w-full min-h-screen border-t border-border-soft flex justify-center items-center">
-    <div class="w-full max-w-4xl flex flex-col items-center text-center">
-      <h1 class="text-4xl font-heading text-accent mb-10">About Me</h1>
-      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-10 w-full">
-        <!-- Left: Expertise Icons -->
-        <div class="space-y-8">
-          <h3 class="text-2xl font-semibold mb-4 text-accent text-left">>/Expertise</h3>
-          <div class="grid grid-cols-3 sm:grid-cols-3 gap-6">
-            <div
-              class="h-40 w-full border border-border-soft rounded-lg p-4 flex flex-col items-center justify-center text-center transition hover:bg-accent hover:text-black cursor-default hover:scale-110">
-              <img src="./icons/sn.png" alt="ServiceNow" class="w-14 h-14 object-contain mb-2" />
-              <span class="text-sm font-medium">ServiceNow</span>
-            </div>
-            <div
-              class="h-40 w-full border border-border-soft rounded-lg p-4 flex flex-col items-center justify-center text-center transition hover:bg-accent hover:text-black cursor-default hover:scale-110">
-              <img src="./icons/azure.png" alt="Microsoft Azure" class="w-14 h-14 object-contain mb-2" />
-              <span class="text-sm font-medium">Microsoft Azure</span>
-            </div>
-            <div
-              class="h-40 w-full border border-border-soft rounded-lg p-4 flex flex-col items-center justify-center text-center transition hover:bg-accent hover:text-black cursor-default hover:scale-110">
-              <img src="./icons/intune.png" alt="Intune" class="w-14 h-14 object-contain mb-2" />
-              <span class="text-sm font-medium">Intune</span>
-            </div>
+  <main id="main">
 
-            <div
-              class="h-40 w-full border border-border-soft rounded-lg p-4 flex flex-col items-center justify-center text-center transition hover:bg-accent hover:text-black cursor-default hover:scale-110">
-              <img src="./icons/exchange.png" alt="Exchange" class="w-14 h-14 object-contain mb-2" />
-              <span class="text-sm font-medium">Exchange</span>
-            </div>
+    <!-- ========================= HERO ========================= -->
+    <header class="hero" id="top">
+      <div class="wrap">
+        <p class="eyebrow">Toronto, ON · Open to opportunities</p>
 
-            <div
-              class="h-40 w-full border border-border-soft rounded-lg p-4 flex flex-col items-center justify-center text-center transition hover:bg-accent hover:text-black cursor-default hover:scale-110">
-              <img src="./icons/sharepoint.png" alt="SharePoint" class="w-14 h-14 object-contain mb-2" />
-              <span class="text-sm font-medium">SharePoint</span>
-            </div>
+        <h1>Harry Pham</h1>
+        <h2><b>IT Specialist</b> — Windows Server, Azure &amp; hybrid identity infrastructure</h2>
 
-            <div
-              class="h-40 w-full border border-border-soft rounded-lg p-4 flex flex-col items-center justify-center text-center transition hover:bg-accent hover:text-black cursor-default hover:scale-110">
-              <img src="./icons/ad.png" alt="Azure AD" class="w-14 h-14 object-contain mb-2" />
-              <span class="text-sm font-medium">Azure AD</span>
-            </div>
+        <p class="lede">
+          I design, deploy and automate the infrastructure that keeps organizations running — servers, identity,
+          email and networks. Currently supporting nine client organizations in an MSP environment, with a
+          background spanning enterprise systems administration and field IT.
+        </p>
 
-            <div
-              class="h-40 w-full border border-border-soft rounded-lg p-4 flex flex-col items-center justify-center text-center transition hover:bg-accent hover:text-black cursor-default hover:scale-110">
-              <img src="./icons/vm.png" alt="VM" class="w-14 h-14 object-contain mb-2" />
-              <span class="text-sm font-medium">VM</span>
-            </div>
-            <div
-              class="h-40 w-full border border-border-soft rounded-lg p-4 flex flex-col items-center justify-center text-center transition hover:bg-accent hover:text-black cursor-default hover:scale-110">
-              <img src="./icons/itil4.png" alt="ITIL 4" class="w-14 h-14 object-contain mb-2" />
-              <span class="text-sm font-medium">ITIL 4</span>
-            </div>
-            <div
-              class="h-40 w-full border border-border-soft rounded-lg p-4 flex flex-col items-center justify-center text-center transition hover:bg-accent hover:text-black cursor-default hover:scale-110">
-              <img src="./icons/network-plus.png" alt="Network+" class="w-14 h-14 object-contain mb-2" />
-              <span class="text-sm font-medium">Network+</span>
-            </div>
-          </div>
+        <div class="chips">
+          <span class="chip">Windows Server</span>
+          <span class="chip">Active Directory</span>
+          <span class="chip">Azure / Entra ID</span>
+          <span class="chip">Exchange Online</span>
+          <span class="chip">SQL Server</span>
+          <span class="chip">Intune</span>
+          <span class="chip">PowerShell</span>
+          <span class="chip">Hyper-V</span>
+          <span class="chip">Sophos / UniFi</span>
         </div>
-        <!-- Right: Summary -->
-        <div class="space-y-10">
-          <div class="flex flex-col justify-center">
-            <h3 class="text-2xl font-semibold mb-4 text-accent text-left">>/Who am I</h3>
-            <p class="text-muted text-left font-medium text-sm sm:text-base">
-              Microsoft 365 and identity-focused IT professional with experience spanning MSP, enterprise, and field environments. Currently administering M365 tenants across 7 client organizations simultaneously at NVTech via Microsoft Lighthouse.</p>
-            <p class="py-1 text-muted text-left font-medium text-sm sm:text-base">Skilled in SharePoint Online, Exchange Online, Entra ID, Microsoft Purview, and Intune. Experienced in PowerShell automation, governance, security controls, and compliance workflows. Holds AZ-104 (Azure Administrator) and ITIL 4 Foundation certifications.</p>
+
+        <div class="btns">
+          <a class="btn primary" href="./assets/Harry_Pham_Resume.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+            </svg>
+            Download résumé
+          </a>
+          <a class="btn" href="mailto:harry.pham11@outlook.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m2 7 10 6 10-6" />
+            </svg>
+            Email
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/harryphamca" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21H9z" />
+            </svg>
+            LinkedIn
+          </a>
+          <a class="btn" href="https://github.com/harryphamit" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.22-3.37-1.22-.46-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2z" />
+            </svg>
+            GitHub
+          </a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="n">9</div>
+            <div class="l">client organizations supported</div>
+          </div>
+          <div class="stat">
+            <div class="n">~425</div>
+            <div class="l">end users across tenants</div>
+          </div>
+          <div class="stat">
+            <div class="n">99%</div>
+            <div class="l">SLA compliance, 50+ tickets/week</div>
+          </div>
+          <div class="stat">
+            <div class="n">5</div>
+            <div class="l">active certifications</div>
           </div>
         </div>
       </div>
+    </header>
+
+    <!-- ========================= ABOUT ========================= -->
+    <section id="about">
+      <div class="wrap reveal">
+        <div class="sec-head">
+          <div class="sec-num">01 / about</div>
+          <h2>Infrastructure, identity and automation</h2>
+        </div>
+
+        <div class="about">
+          <div>
+            <p>
+              I'm an IT Specialist based in Toronto with hands-on experience across <strong>Windows Server, Azure,
+              Exchange Online and hybrid Active Directory</strong> environments, backed by strong PowerShell
+              automation and multi-client infrastructure operations.
+            </p>
+            <p>
+              My work covers the full lifecycle: designing and implementing server, identity and network
+              infrastructure, then automating the administrative workflows around it so systems stay reliable and
+              teams stop repeating themselves. Firewall migrations, Windows 11 rollouts, mailbox and identity
+              administration, onboarding pipelines — delivered with zero production downtime.
+            </p>
+            <p>
+              That range comes from working at three very different scales: an <strong>MSP</strong> juggling nine
+              tenants at once, an <strong>enterprise</strong> manufacturer with users across five countries, and
+              <strong>field IT</strong> deploying hardware at bank branches and retail sites. A software engineering
+              degree underneath it means the automation side comes naturally.
+            </p>
+          </div>
+
+          <aside class="card">
+            <div class="card-label">// profile</div>
+            <div class="kv">
+              <div class="kv-row">
+                <span class="k">location</span>
+                <span class="v">Toronto, ON</span>
+              </div>
+              <div class="kv-row">
+                <span class="k">current</span>
+                <span class="v">IT Specialist<span class="sub">NVTech · MSP</span></span>
+              </div>
+              <div class="kv-row">
+                <span class="k">focus</span>
+                <span class="v">Systems &amp; cloud infrastructure</span>
+              </div>
+              <div class="kv-row">
+                <span class="k">certs</span>
+                <span class="v">AZ-104 · MD-102<span class="sub">ITIL 4 · Network+ · A+</span></span>
+              </div>
+              <div class="kv-row">
+                <span class="k">studying</span>
+                <span class="v">MSc Computer Science<span class="sub">Georgia Tech</span></span>
+              </div>
+              <div class="kv-row">
+                <span class="k">status</span>
+                <span class="v" style="color:var(--green)">Open to opportunities</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= STACK ========================= -->
+    <section id="stack">
+      <div class="wrap reveal">
+        <div class="sec-head">
+          <div class="sec-num">02 / stack</div>
+          <h2>Technical skills</h2>
+          <p>The tools I work in day to day, grouped by the layer of the stack they sit in.</p>
+        </div>
+
+        <div class="stack-grid">
+          <div class="stack-card">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="7" rx="1.5" />
+                <rect x="2" y="14" width="20" height="7" rx="1.5" />
+                <path d="M6 6.5h.01M6 17.5h.01" />
+              </svg>
+              Infrastructure &amp; Server
+            </h3>
+            <div class="tags">
+              <span class="tag">Windows Server</span>
+              <span class="tag">Active Directory DS</span>
+              <span class="tag">Group Policy</span>
+              <span class="tag">DNS</span>
+              <span class="tag">DHCP</span>
+              <span class="tag">NTFS / share permissions</span>
+              <span class="tag">File services</span>
+              <span class="tag">Hyper-V</span>
+              <span class="tag">Monitoring &amp; tuning</span>
+            </div>
+          </div>
+
+          <div class="stack-card">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97 6 6 0 0 0-11.6-1.4A4 4 0 0 0 6.5 19z" />
+              </svg>
+              Cloud &amp; Azure
+            </h3>
+            <div class="tags">
+              <span class="tag">Microsoft Azure</span>
+              <span class="tag">Entra ID</span>
+              <span class="tag">Azure AD Connect</span>
+              <span class="tag">Hybrid join</span>
+              <span class="tag">Conditional Access</span>
+              <span class="tag">MFA</span>
+              <span class="tag">Resource management</span>
+            </div>
+          </div>
+
+          <div class="stack-card">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="8" ry="3" />
+                <path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3" />
+              </svg>
+              Database
+            </h3>
+            <div class="tags">
+              <span class="tag">Microsoft SQL Server</span>
+              <span class="tag">Instance configuration</span>
+              <span class="tag">Logins &amp; role permissions</span>
+              <span class="tag">Backup &amp; restore</span>
+              <span class="tag">SQL Server Agent</span>
+            </div>
+          </div>
+
+          <div class="stack-card">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m2 7 10 6 10-6" />
+              </svg>
+              Exchange &amp; Microsoft 365
+            </h3>
+            <div class="tags">
+              <span class="tag">Exchange Online</span>
+              <span class="tag">Mail flow &amp; routing</span>
+              <span class="tag">Mail trace</span>
+              <span class="tag">Teams</span>
+              <span class="tag">SharePoint</span>
+              <span class="tag">OneDrive</span>
+              <span class="tag">Intune MDM/MAM</span>
+              <span class="tag">Win32 app deployment</span>
+              <span class="tag">Autopilot</span>
+              <span class="tag">Compliance policies</span>
+            </div>
+          </div>
+
+          <div class="stack-card">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z" />
+              </svg>
+              Networking
+            </h3>
+            <div class="tags">
+              <span class="tag">TCP/IP</span>
+              <span class="tag">DNS / DHCP</span>
+              <span class="tag">VPN</span>
+              <span class="tag">LAN / Wi-Fi</span>
+              <span class="tag">Sophos Firewall</span>
+              <span class="tag">UniFi switches &amp; APs</span>
+              <span class="tag">Cisco switches</span>
+              <span class="tag">Firewall rule management</span>
+            </div>
+          </div>
+
+          <div class="stack-card">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="m5 7 5 5-5 5M13 17h6" />
+              </svg>
+              Scripting &amp; Automation
+            </h3>
+            <div class="tags">
+              <span class="tag">PowerShell</span>
+              <span class="tag">Exchange Online PS</span>
+              <span class="tag">Microsoft Graph API</span>
+              <span class="tag">App deployment scripts</span>
+              <span class="tag">Onboarding / offboarding</span>
+              <span class="tag">System reporting</span>
+            </div>
+          </div>
+
+          <div class="stack-card">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M9 11l3 3 8-8" />
+                <path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9" />
+              </svg>
+              ITSM &amp; Support Tools
+            </h3>
+            <div class="tags">
+              <span class="tag">ServiceNow</span>
+              <span class="tag">Jira Service Management</span>
+              <span class="tag">ManageEngine</span>
+              <span class="tag">Freshworks</span>
+              <span class="tag">Syncro RMM</span>
+              <span class="tag">ScreenConnect</span>
+              <span class="tag">LogMeIn</span>
+              <span class="tag">TeamViewer</span>
+            </div>
+          </div>
+
+          <div class="stack-card">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              Security
+            </h3>
+            <div class="tags">
+              <span class="tag">Defender for Office 365</span>
+              <span class="tag">Anti-spoofing / DMARC</span>
+              <span class="tag">Phishing remediation</span>
+              <span class="tag">SpamHero</span>
+              <span class="tag">Barracuda</span>
+              <span class="tag">Delinea Privilege Manager</span>
+              <span class="tag">Least privilege</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= EXPERIENCE ========================= -->
+    <section id="experience">
+      <div class="wrap reveal">
+        <div class="sec-head">
+          <div class="sec-num">03 / experience</div>
+          <h2>Professional experience</h2>
+        </div>
+
+        <div class="timeline">
+
+          <article class="job">
+            <div class="job-when">
+              <span class="live">Oct 2025 — now</span>
+              <span class="place">Toronto, ON</span>
+            </div>
+            <div>
+              <h3>IT Specialist — MSP Environment</h3>
+              <p class="org">NVTech · New Vision Technologies</p>
+              <ul>
+                <li>Maintain and support Windows environments, network infrastructure, firewall configurations,
+                  identity systems and application stability across <b>9 client organizations (~425 users)</b>;
+                  triage incidents by business impact and hold <b>99% SLA compliance across 50+ weekly tickets</b>.</li>
+                <li>Administer Exchange Online across all tenants — mailboxes, mail flow rules, email routing,
+                  mail trace analysis and phishing remediation using PowerShell, Defender for Office 365,
+                  SpamHero and Barracuda.</li>
+                <li>Execute infrastructure projects including <b>Sophos UTM-to-appliance firewall migrations</b>
+                  (rule recreation, DHCP scope reconfiguration, VPN rebuild), Windows 11 upgrade deployments and
+                  standardized network hardware installs across client sites — all delivered with
+                  <b>zero production downtime</b>.</li>
+                <li>Build and maintain PowerShell automation for printer deployment, network printer configuration,
+                  mailbox and calendar delegation, onboarding workflows and administrative reporting.</li>
+              </ul>
+              <div class="job-tags">
+                <span class="tag">Exchange Online</span>
+                <span class="tag">Sophos</span>
+                <span class="tag">PowerShell</span>
+                <span class="tag">Entra ID</span>
+                <span class="tag">Defender for O365</span>
+                <span class="tag">Syncro RMM</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="job">
+            <div class="job-when">
+              <span>Sept 2024 — Aug 2025</span>
+              <span class="place">Toronto, ON</span>
+            </div>
+            <div>
+              <h3>Junior Systems Administrator &amp; Desktop Support Analyst</h3>
+              <p class="org">S&amp;C Electric Company</p>
+              <p class="note">Progressed from Desktop Support Analyst into Junior Systems Administrator within a
+                continuous one-year enterprise co-op.</p>
+              <ul>
+                <li>Engineered <b>Intune Win32 deployment packages for 5 enterprise applications</b>, authoring 12
+                  PowerShell install, uninstall and configuration scripts totalling <b>1,500+ lines</b>; automated
+                  software deployment and cut deployment effort by <b>40%</b>.</li>
+                <li>Administered hybrid identity infrastructure across Entra ID, on-premises Active Directory,
+                  Exchange Online and AD Connect; supported <b>50+ security group migrations</b> and maintained
+                  access continuity through a cloud migration.</li>
+                <li>Resolved <b>600+ user incidents</b> across international S&amp;C sites (Canada, US, Mexico,
+                  England, Australia) for executives, engineers and shopfloor users; ran the full
+                  onboarding/offboarding lifecycle including Autopilot provisioning, MFA setup, device collection
+                  and account decommissioning.</li>
+                <li>Supported privileged access workflows with Delinea Privilege Manager and authored
+                  <b>8 standard work documents</b> for production-critical manufacturing systems (Vista, Modula WMS,
+                  Motherboard Burn-In, GravoStyle), improving rebuild repeatability and cutting recovery time.</li>
+              </ul>
+              <div class="job-tags">
+                <span class="tag">Intune</span>
+                <span class="tag">Hybrid AD</span>
+                <span class="tag">AD Connect</span>
+                <span class="tag">Autopilot</span>
+                <span class="tag">Delinea</span>
+                <span class="tag">ServiceNow</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="job">
+            <div class="job-when">
+              <span>May 2023 — Sept 2023</span>
+              <span class="place">Mississauga, ON</span>
+            </div>
+            <div>
+              <h3>IT Field Service Technician</h3>
+              <p class="org">CompuCom Systems Inc.</p>
+              <ul>
+                <li>Deployed workstations, switches and network hardware for <b>BMO branch migrations</b> and
+                  new-branch openings; validated IP configuration, domain access, connectivity and print services
+                  at go-live cutovers.</li>
+                <li>Delivered on-site hardware repair and support for 7-Eleven, Tim Hortons, Canada Post and Shell
+                  Canada — replacing and troubleshooting laptops, switches, POS systems and printers while
+                  completing imaging and connectivity validation.</li>
+              </ul>
+              <div class="job-tags">
+                <span class="tag">Field deployment</span>
+                <span class="tag">Imaging</span>
+                <span class="tag">Switching</span>
+                <span class="tag">POS systems</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="job">
+            <div class="job-when">
+              <span>Sept 2020 — May 2023</span>
+              <span class="place">Markham, ON</span>
+            </div>
+            <div>
+              <h3>Computer Repair Technician</h3>
+              <p class="org">Advanced Skytech Ltd.</p>
+              <ul>
+                <li>Led a <b>5-technician repair team</b> through peak-season surges (Cyber Monday, Prime Day),
+                  coordinating workflow and holding throughput and quality-control standards across high-volume
+                  desktop repair fulfillment for Best Buy, Canada Computers and Amazon.</li>
+              </ul>
+              <div class="job-tags">
+                <span class="tag">Team lead</span>
+                <span class="tag">Hardware repair</span>
+                <span class="tag">QC</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= HOME LAB ========================= -->
+    <section id="lab">
+      <div class="wrap reveal">
+        <div class="sec-head">
+          <div class="sec-num">04 / home lab</div>
+          <h2>Hyper-V, SQL Server &amp; hybrid Entra ID lab</h2>
+          <p>A self-built multi-VM environment where I run the same identity, database and policy work I do in
+            production — with room to break things on purpose.</p>
+        </div>
+
+        <div class="lab">
+          <div class="lab-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span>lab-topology.svg — LAB.LOCAL / hybrid-joined</span>
+          </div>
+
+          <div class="lab-body">
+            <figure style="margin:0">
+              <div class="lab-figure">
+                <svg viewBox="0 0 880 470" role="img"
+                  aria-label="Home lab topology: a Hyper-V host running a domain controller, SQL Server and a Windows 11 client on an internal virtual switch, synchronized to Microsoft Entra ID through Azure AD Connect with Conditional Access enforced on Microsoft 365 access.">
+                  <defs>
+                    <marker id="arrowUp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7"
+                      orient="auto-start-reverse">
+                      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#38d6e8" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    </marker>
+                    <marker id="arrowDown" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7"
+                      orient="auto-start-reverse">
+                      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#4ade80" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    </marker>
+                  </defs>
+
+                  <!-- ===== CLOUD ===== -->
+                  <rect x="120" y="8" width="640" height="96" rx="10" fill="#0d1620" stroke="#1d3a44"
+                    stroke-width="1.2" />
+                  <text x="140" y="34" fill="#38d6e8" font-family="JetBrains Mono, monospace" font-size="12"
+                    font-weight="700">MICROSOFT CLOUD</text>
+
+                  <rect x="140" y="46" width="180" height="42" rx="6" fill="#122430" stroke="#1d3a44" />
+                  <text x="230" y="65" fill="#e2e9f1" font-family="Inter, sans-serif" font-size="12.5"
+                    font-weight="600" text-anchor="middle">Microsoft Entra ID</text>
+                  <text x="230" y="80" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10"
+                    text-anchor="middle">device registration · SSO</text>
+
+                  <rect x="334" y="46" width="180" height="42" rx="6" fill="#122430" stroke="#1d3a44" />
+                  <text x="424" y="65" fill="#e2e9f1" font-family="Inter, sans-serif" font-size="12.5"
+                    font-weight="600" text-anchor="middle">Conditional Access</text>
+                  <text x="424" y="80" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10"
+                    text-anchor="middle">require compliant device</text>
+
+                  <rect x="528" y="46" width="180" height="42" rx="6" fill="#122430" stroke="#1d3a44" />
+                  <text x="618" y="65" fill="#e2e9f1" font-family="Inter, sans-serif" font-size="12.5"
+                    font-weight="600" text-anchor="middle">Microsoft 365</text>
+                  <text x="618" y="80" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10"
+                    text-anchor="middle">Exchange · SharePoint</text>
+
+                  <!-- ===== SYNC LINK ===== -->
+                  <line x1="330" y1="160" x2="330" y2="112" stroke="#38d6e8" stroke-width="1.4"
+                    marker-end="url(#arrowUp)" />
+                  <line x1="530" y1="112" x2="530" y2="160" stroke="#4ade80" stroke-width="1.4"
+                    stroke-dasharray="4 4" marker-end="url(#arrowDown)" />
+
+                  <rect x="352" y="120" width="156" height="30" rx="5" fill="#06080b" stroke="#1d2937" />
+                  <text x="430" y="139" fill="#9aa9bb" font-family="JetBrains Mono, monospace" font-size="10.5"
+                    text-anchor="middle">Azure AD Connect ⇅</text>
+
+                  <text x="316" y="146" fill="#38d6e8" font-family="JetBrains Mono, monospace" font-size="9.5"
+                    text-anchor="end">sync</text>
+                  <text x="544" y="146" fill="#4ade80" font-family="JetBrains Mono, monospace" font-size="9.5">policy</text>
+
+                  <!-- ===== HOST ===== -->
+                  <rect x="30" y="168" width="820" height="272" rx="12" fill="#0a0f16" stroke="#1d2937"
+                    stroke-width="1.2" />
+                  <text x="52" y="196" fill="#e2e9f1" font-family="Inter, sans-serif" font-size="13.5"
+                    font-weight="600">Hyper-V Host — Windows Server</text>
+                  <text x="828" y="196" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5"
+                    text-anchor="end">checkpoints · allocated compute &amp; storage</text>
+
+                  <!-- vSwitch -->
+                  <rect x="52" y="212" width="776" height="34" rx="6" fill="#111926" stroke="#1d2937" />
+                  <text x="70" y="234" fill="#38d6e8" font-family="JetBrains Mono, monospace" font-size="11"
+                    font-weight="500">vSwitch</text>
+                  <text x="128" y="234" fill="#9aa9bb" font-family="JetBrains Mono, monospace" font-size="11">LAB-INTERNAL
+                    · 10.10.10.0/24</text>
+                  <text x="810" y="234" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5"
+                    text-anchor="end">DHCP scope + DNS forwarders</text>
+
+                  <!-- risers -->
+                  <path d="M164 246 L164 274" stroke="#1d2937" stroke-width="1.2" />
+                  <path d="M440 246 L440 274" stroke="#1d2937" stroke-width="1.2" />
+                  <path d="M716 246 L716 274" stroke="#1d2937" stroke-width="1.2" />
+
+                  <!-- VM 1 -->
+                  <rect x="52" y="274" width="224" height="144" rx="8" fill="#111926" stroke="#243347" />
+                  <rect x="52" y="274" width="224" height="28" rx="8" fill="#16202e" />
+                  <rect x="52" y="292" width="224" height="10" fill="#16202e" />
+                  <circle cx="70" cy="288" r="4" fill="#4ade80" />
+                  <text x="84" y="292" fill="#e2e9f1" font-family="JetBrains Mono, monospace" font-size="11.5"
+                    font-weight="700">DC01</text>
+                  <text x="262" y="292" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10"
+                    text-anchor="end">.10</text>
+                  <text x="70" y="325" fill="#9aa9bb" font-family="Inter, sans-serif" font-size="12">Domain Controller</text>
+                  <text x="70" y="346" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5">AD DS · DNS · DHCP</text>
+                  <text x="70" y="365" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5">OU structure</text>
+                  <text x="70" y="384" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5">security groups</text>
+                  <text x="70" y="403" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5">GPO baselines</text>
+
+                  <!-- VM 2 -->
+                  <rect x="328" y="274" width="224" height="144" rx="8" fill="#111926" stroke="#243347" />
+                  <rect x="328" y="274" width="224" height="28" rx="8" fill="#16202e" />
+                  <rect x="328" y="292" width="224" height="10" fill="#16202e" />
+                  <circle cx="346" cy="288" r="4" fill="#4ade80" />
+                  <text x="360" y="292" fill="#e2e9f1" font-family="JetBrains Mono, monospace" font-size="11.5"
+                    font-weight="700">SQL01</text>
+                  <text x="538" y="292" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10"
+                    text-anchor="end">.20</text>
+                  <text x="346" y="325" fill="#9aa9bb" font-family="Inter, sans-serif" font-size="12">Microsoft SQL Server</text>
+                  <text x="346" y="346" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5">instances · service accts</text>
+                  <text x="346" y="365" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5">logins · role perms</text>
+                  <text x="346" y="384" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5">full + differential jobs</text>
+                  <text x="346" y="403" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5">restore drills</text>
+
+                  <!-- VM 3 -->
+                  <rect x="604" y="274" width="224" height="144" rx="8" fill="#111926" stroke="#243347" />
+                  <rect x="604" y="274" width="224" height="28" rx="8" fill="#16202e" />
+                  <rect x="604" y="292" width="224" height="10" fill="#16202e" />
+                  <circle cx="622" cy="288" r="4" fill="#4ade80" />
+                  <text x="636" y="292" fill="#e2e9f1" font-family="JetBrains Mono, monospace" font-size="11.5"
+                    font-weight="700">WS01</text>
+                  <text x="814" y="292" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10"
+                    text-anchor="end">.50</text>
+                  <text x="622" y="325" fill="#9aa9bb" font-family="Inter, sans-serif" font-size="12">Windows 11 Client</text>
+                  <text x="622" y="346" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5">domain-joined</text>
+                  <text x="622" y="365" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5">hybrid Entra join</text>
+                  <text x="622" y="384" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5">seamless SSO test</text>
+                  <text x="622" y="403" fill="#67768a" font-family="JetBrains Mono, monospace" font-size="10.5">GPO + CA validation</text>
+
+                  <!-- identity flow caption -->
+                  <text x="440" y="460" fill="#4d5a6b" font-family="JetBrains Mono, monospace" font-size="10"
+                    text-anchor="middle">identity flow: on-prem authentication → AD Connect sync → Entra ID → Conditional Access → Microsoft 365</text>
+                </svg>
+              </div>
+              <figcaption>Lab topology — on-prem domain services synchronized to Entra ID, with Conditional Access
+                enforced end to end.</figcaption>
+            </figure>
+
+            <div class="lab-cols">
+              <div class="lab-col">
+                <h4>// virtualization &amp; AD</h4>
+                <p>Multi-VM Hyper-V environment with virtual switches and checkpoints, and compute and storage
+                  allocated across a domain controller, SQL Server and client workstation. Windows Server configured
+                  with AD DS, DNS and DHCP — including OU structure, security groups and GPOs enforcing security
+                  baselines and software restrictions.</p>
+              </div>
+              <div class="lab-col">
+                <h4>// sql server</h4>
+                <p>Installed and administered SQL Server: configured server instances and service accounts, created
+                  and managed databases, assigned logins and role-based permissions, scheduled full and differential
+                  backup jobs via SQL Server Agent, and performed restore operations under simulated failure
+                  scenarios.</p>
+              </div>
+              <div class="lab-col">
+                <h4>// hybrid identity</h4>
+                <p>Implemented Entra ID hybrid join using Azure AD Connect — synchronized on-premises AD objects,
+                  configured device registration policies, validated seamless SSO, and enforced Conditional Access
+                  requiring compliant devices. Verified the full identity flow from on-prem authentication through to
+                  Microsoft 365 access.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= PROJECTS ========================= -->
+    <section id="projects">
+      <div class="wrap reveal">
+        <div class="sec-head">
+          <div class="sec-num">05 / projects</div>
+          <h2>Software projects</h2>
+          <p>Coursework and personal builds from my software engineering degree — the background behind the
+            automation side of my work.</p>
+        </div>
+
+        <div class="proj-grid">
+          <article class="proj">
+            <div class="shot"><img src="./assets/project_1.png" alt="IT ticket system interface" loading="lazy" /></div>
+            <div class="body">
+              <h3>IT Ticket System</h3>
+              <p>Helpdesk ticketing app with create, assign and resolve flows backed by a REST API.</p>
+              <div class="tags">
+                <span class="tag">Next.js</span><span class="tag">REST API</span><span class="tag">JSON Server</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="shot"><img src="./assets/project_2.png" alt="Stock market portfolio app" loading="lazy" /></div>
+            <div class="body">
+              <h3>Stock Market Portfolio</h3>
+              <p>Portfolio tracker with authentication, trade history and live quote lookups.</p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">MySQL</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="shot"><img src="./assets/project_3.png" alt="US market tracker dashboard" loading="lazy" /></div>
+            <div class="body">
+              <h3>US Market Tracker</h3>
+              <p>Server-rendered dashboard pulling index and equity data from a public market API.</p>
+              <div class="tags">
+                <span class="tag">Node.js</span><span class="tag">Mustache</span><span class="tag">REST API</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="shot"><img src="./assets/project_4.png" alt="Vehicle detection computer vision output"
+                loading="lazy" /></div>
+            <div class="body">
+              <h3>Vehicle Detection (CV)</h3>
+              <p>Computer vision pipeline detecting and classifying vehicles in traffic footage.</p>
+              <div class="tags">
+                <span class="tag">OpenCV</span><span class="tag">PyTorch</span><span class="tag">Matplotlib</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="shot"><img src="./assets/project_5.png" alt="Tic tac toe web game" loading="lazy" /></div>
+            <div class="body">
+              <h3>Tic Tac Toe (Web)</h3>
+              <p>Component-driven game with move history and time-travel state.</p>
+              <div class="tags">
+                <span class="tag">React</span><span class="tag">CSS</span><span class="tag">REST API</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="shot"><img src="./assets/project_6.png" alt="Skin disease detection model output"
+                loading="lazy" /></div>
+            <div class="body">
+              <h3>Skin Disease Detection</h3>
+              <p>Image classification model trained on dermatology datasets sourced through public APIs.</p>
+              <div class="tags">
+                <span class="tag">Kaggle API</span><span class="tag">ISIC API</span><span class="tag">Deeplake</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= CREDENTIALS ========================= -->
+    <section id="credentials">
+      <div class="wrap reveal">
+        <div class="sec-head">
+          <div class="sec-num">06 / credentials</div>
+          <h2>Certifications &amp; education</h2>
+        </div>
+
+        <div class="cred-grid">
+          <div>
+            <div class="card-label">// certifications</div>
+            <div class="cert-list">
+              <div class="cert">
+                <img src="./icons/intune.png" alt="" />
+                <div class="txt">
+                  <strong>Microsoft 365 Certified: Endpoint Administrator Associate</strong>
+                  <span>MD-102 · Microsoft</span>
+                </div>
+                <div class="when">Aug 2026</div>
+              </div>
+              <div class="cert">
+                <img src="./icons/azure.png" alt="" />
+                <div class="txt">
+                  <strong>Microsoft Certified: Azure Administrator Associate</strong>
+                  <span>AZ-104 · Microsoft</span>
+                </div>
+                <div class="when">May 2026</div>
+              </div>
+              <div class="cert">
+                <img src="./icons/itil4.png" alt="" />
+                <div class="txt">
+                  <strong>ITIL 4 Foundation — IT Service Management</strong>
+                  <span>PeopleCert</span>
+                </div>
+                <div class="when">Aug 2025</div>
+              </div>
+              <div class="cert">
+                <img src="./icons/network-plus.png" alt="" />
+                <div class="txt">
+                  <strong>CompTIA Network+</strong>
+                  <span>CompTIA</span>
+                </div>
+                <div class="when">Nov 2024</div>
+              </div>
+              <div class="cert">
+                <img src="./icons/aplus-logo.png" alt="" />
+                <div class="txt">
+                  <strong>CompTIA A+</strong>
+                  <span>CompTIA</span>
+                </div>
+                <div class="when">Jul 2020</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card-label">// education</div>
+            <div class="edu-list">
+              <div class="edu">
+                <div class="top">
+                  <h4>Master of Science, Computer Science</h4>
+                  <span class="yr now">in progress</span>
+                </div>
+                <p><span class="school">Georgia Institute of Technology · Atlanta, GA</span></p>
+              </div>
+              <div class="edu">
+                <div class="top">
+                  <h4>Bachelor of Technology, Software Engineering Technology</h4>
+                  <span class="yr">Dec 2025</span>
+                </div>
+                <p><span class="school">McMaster University · Hamilton, ON</span></p>
+              </div>
+              <div class="edu">
+                <div class="top">
+                  <h4>Advanced Diploma, Computer Engineering Technology</h4>
+                  <span class="yr">Apr 2020</span>
+                </div>
+                <p><span class="school">Seneca Polytechnic · Toronto, ON · Honours</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= CONTACT ========================= -->
+    <section id="contact" class="contact">
+      <div class="wrap reveal">
+        <div class="sec-num">07 / contact</div>
+        <h2>Let's talk infrastructure</h2>
+        <p>I'm open to systems administration, cloud infrastructure and IT operations roles in the Toronto area or
+          remote. The fastest way to reach me is email.</p>
+
+        <div class="btns">
+          <a class="btn primary" href="mailto:harry.pham11@outlook.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m2 7 10 6 10-6" />
+            </svg>
+            harry.pham11@outlook.com
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/harryphamca" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21H9z" />
+            </svg>
+            LinkedIn
+          </a>
+          <a class="btn" href="https://github.com/harryphamit" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.22-3.37-1.22-.46-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2z" />
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <span>© <span id="yr">2026</span> Harry Pham — Toronto, ON</span>
+      <div class="foot-links">
+        <a href="./assets/Harry_Pham_Resume.pdf" target="_blank" rel="noopener">résumé</a>
+        <a href="https://www.linkedin.com/in/harryphamca" target="_blank" rel="noopener">linkedin</a>
+        <a href="https://github.com/harryphamit" target="_blank" rel="noopener">github</a>
+        <a href="#top">top ↑</a>
+      </div>
     </div>
-  </section>
-  <!-- Footer -->
-  <footer class="min-h-[50px] px-4 flex items-center justify-center text-muted text-xs sm:text-sm text-center">
-    <p>© 2025 Harry Pham. All Rights Reserved.</p>
   </footer>
+
   <script>
-    const navbar = document.getElementById('navbar');
-    const fullNav = document.getElementById('navbar-full');
-    const links = document.getElementById('navbar-links');
-    const hero = document.getElementById('hero');
+    (function () {
+      'use strict';
 
-    function handleNavbar() {
-      const heroBottom = hero.getBoundingClientRect().bottom;
+      var nav = document.getElementById('nav');
+      var burger = document.getElementById('burger');
+      var navlinks = document.getElementById('navlinks');
+      var yr = document.getElementById('yr');
 
-      if (heroBottom <= window.innerHeight) {
-        navbar.classList.add('w-16', 'px-2', 'justify-center');
-        navbar.classList.remove('w-[90%]', 'sm:w-[80%]', 'px-4', 'sm:px-6', 'justify-between');
-        fullNav.innerHTML = `
-        <img src="./assets/profile.JPG" alt="Harry Pham Avatar" class="w-10 h-10 rounded-full border border-muted" />
-      `;
-        links.style.display = 'none';
-      } else {
-        navbar.classList.remove('w-16', 'px-2', 'justify-center');
-        navbar.classList.add('w-[90%]', 'sm:w-[80%]', 'px-4', 'sm:px-6', 'justify-between');
-        fullNav.innerHTML = `
-        <img src="./assets/profile.JPG" alt="Harry Pham Avatar" class="w-10 h-10 rounded-full border border-muted" />
-        <span class="font-heading text-base sm:text-lg text-text-main">Harry Pham</span>
-      `;
-        links.style.display = 'flex';
+      if (yr) yr.textContent = new Date().getFullYear();
+
+      /* --- nav border on scroll --- */
+      function onScroll() {
+        nav.classList.toggle('scrolled', window.scrollY > 12);
       }
-    }
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
 
-    window.addEventListener('scroll', handleNavbar);
-    window.addEventListener('resize', handleNavbar); // add this line
+      /* --- mobile menu --- */
+      burger.addEventListener('click', function () {
+        var open = navlinks.classList.toggle('open');
+        nav.classList.toggle('menu-open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      navlinks.addEventListener('click', function (e) {
+        if (e.target.closest('a')) {
+          navlinks.classList.remove('open');
+          nav.classList.remove('menu-open');
+          burger.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && navlinks.classList.contains('open')) {
+          navlinks.classList.remove('open');
+          nav.classList.remove('menu-open');
+          burger.setAttribute('aria-expanded', 'false');
+          burger.focus();
+        }
+      });
 
-    fullNav.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    window.addEventListener("load", () => {
-      const overlay = document.getElementById("loading-overlay");
-      overlay.classList.add("opacity-0");
-      setTimeout(() => {
-        overlay.style.display = "none";
-      }, 500); // Matches duration-500
-    });
-    const cursor = document.getElementById("gradient-cursor");
+      /* --- scroll spy --- */
+      var links = Array.prototype.slice.call(
+        navlinks.querySelectorAll('a[href^="#"]')
+      );
+      var sections = links
+        .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+        .filter(Boolean);
 
-    document.addEventListener("mousemove", (e) => {
-      cursor.style.transform = `translate(${e.clientX - 32}px, ${e.clientY - 32}px)`;
-    });
+      if ('IntersectionObserver' in window && sections.length) {
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (!en.isIntersecting) return;
+            links.forEach(function (a) {
+              a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id);
+            });
+          });
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+        sections.forEach(function (s) { spy.observe(s); });
+      }
+
+      /* --- reveal on scroll --- */
+      var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var ro = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) {
+              en.target.classList.add('in');
+              obs.unobserve(en.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -60px 0px', threshold: 0.06 });
+        reveals.forEach(function (el) { ro.observe(el); });
+      } else {
+        reveals.forEach(function (el) { el.classList.add('in'); });
+      }
+    })();
   </script>
 </body>
 
